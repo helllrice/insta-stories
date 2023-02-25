@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="style.css">
+    <title>insta-stories</title>
+    <script src="index.js"></script>
+</head>
+
+<body>
+    <div class="my-player">
+
+    </div>
+
+    <script>
+        initPlayer({
+            target: '.my-player',
+            slides: [
+                {url: 'images/chunk1.jpg', alt: 'slide1'},
+                {url: 'images/chunk2.jpg', alt: 'slide2'},
+                {url: 'images/chunk1.jpg', alt: 'slide3'}
+            ],
+            delayPerSlide: 5
+        });
+    </script>
+</body>
+</html>
