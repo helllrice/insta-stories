@@ -1,4 +1,4 @@
-import { Overlay } from './overlay.js'
+import {Overlay} from './overlay.js'
 
 export class Text extends Overlay {
     /**
@@ -29,7 +29,7 @@ export class Text extends Overlay {
 
         this.text = params?.text;
 
-        if (typeof  this.text !== 'string') {
+        if (typeof this.text !== 'string') {
             throw new ReferenceError('A text to the created overlay is not specified');
         }
     }

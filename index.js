@@ -1,6 +1,6 @@
-import {Player} from "./player/overlays/player.js";
+import {Lib} from "./player/lib.js";
 
-new Player(
+new Lib(
     {
         target: '.my-player',
         slides: [

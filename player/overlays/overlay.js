@@ -1,8 +1,8 @@
- export class Overlay {
-     /**
-      *Тип наложения
-      * @type {string}
-      * */
+export class Overlay {
+    /**
+     *Тип наложения
+     * @type {string}
+     * */
 
     type;
     /**
@@ -16,7 +16,6 @@
      * @type {Object<string, string>}
      * */
     styles = {};
-
 
 
     /**
@@ -35,7 +34,7 @@
     constructor(params) {
         this.type = params.type;
 
-        if (typeof  this.type !== 'string') {
+        if (typeof this.type !== 'string') {
             throw  new TypeError('A type of the created overlay is not specified')
         }
 
@@ -46,7 +45,7 @@
             throw new TypeError('Additional classes can be defined only as array');
         }
 
-        this.styles = params?.styles  ?? this.styles
+        this.styles = params?.styles ?? this.styles
 
         if (typeof this.styles !== 'object') {
             throw new TypeError('Additional styles can be defined only as object');
@@ -58,7 +57,7 @@
      * @returns {Element}
      */
 
-    render () {
+    render() {
         const
             styles = Object.entries(this.styles)
                 .map((el) => el.join(':'))

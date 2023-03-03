@@ -1,6 +1,6 @@
-import { Overlay } from './overlay.js'
-import * as overlays from './index.js'
-import ClassSwitcher from '../class-switcher.js'
+import {Overlay} from './overlays/overlay.js'
+import * as overlays from './overlays'
+import ClassSwitcher from './class-switcher.js'
 
 /**
  * @typedef {{url: string, alt?: string, overlays?: Overlay[]}}
@@ -12,7 +12,7 @@ const Slide = null;
  * */
 const Slides = null;
 
-export  class Player {
+export class Lib {
     /**
      * Контейнер для плеера
      * @type {Element}
@@ -53,25 +53,24 @@ export  class Player {
      */
 
     constructor(params) {
-            this.target = document.querySelector(params.target)
+        this.target = document.querySelector(params.target)
 
-            if (this.target === null ) {
-                throw  new ReferenceError('A lot to mount the player is not specified')
-            }
+        if (this.target === null) {
+            throw  new ReferenceError('A lot to mount the player is not specified')
+        }
 
-            this.slides = params.slides
+        this.slides = params.slides
 
-            if (Array.isArray(params)) {
-                throw  new TypeError('Slides to render is not specified')
-            }
+        if (Array.isArray(params)) {
+            throw  new TypeError('Slides to render is not specified')
+        }
 
-            this.delayPerSlide = params?.delayPerSlide ?? this.delayPerSlide
+        this.delayPerSlide = params?.delayPerSlide ?? this.delayPerSlide
 
         this.cs = new ClassSwitcher(this.target)
 
         this.mount()
     }
-
 
     /**
      * Монтирует элементы плеера к target
@@ -85,20 +84,18 @@ export  class Player {
         this.cs.runChunkSwitching(this.delayPerSlide, 1);
     }
 
-
-
     /**
      * Генерирует элементы временной шкалы
      * @returns {DocumentFragment}
      * */
     generateTimelineChunks() {
-       const
-           wrapper = document.createDocumentFragment();
+        const
+            wrapper = document.createDocumentFragment();
 
         for (const i of this.slides.keys()) {
             const el = document.createElement('div')
 
-                el.innerHTML = `
+            el.innerHTML = `
             <div class="timeline-chunk ${i === 0 ? 'timeline-chunk-active' : ''}">
                 <div class="timeline-chunk-inner"></div>
             </div>
@@ -115,7 +112,7 @@ export  class Player {
      * Генерирует элементы слайдов
      * @returns {DocumentFragment}
      */
-     generatePlayerChunks() {
+    generatePlayerChunks() {
         const
             wrapper = document.createDocumentFragment()
 
@@ -123,7 +120,7 @@ export  class Player {
             const el = document.createElement('div')
             el.innerHTML = `
                 <div class="player-chunk ${i === 0 ? 'player-chunk-active' : ''}">
-                    <img src="${slide.url}" alt="${slide.alt ??  ''}">
+                    <img src="${slide.url}" alt="${slide.alt ?? ''}">
                 </div>
             `;
 
@@ -136,7 +133,6 @@ export  class Player {
 
         return wrapper;
     }
-
 
     /**
      * Генерирует элементы наложения на слайды
@@ -160,7 +156,6 @@ export  class Player {
         }
         return wrapper;
     }
-
 
     /**
      * Генерирует элементы плеера
@@ -189,7 +184,6 @@ export  class Player {
         player.setAttribute('class', 'player')
         player.appendChild(timeline)
         player.appendChild(contentWrapper)
-
 
         return player;
     }

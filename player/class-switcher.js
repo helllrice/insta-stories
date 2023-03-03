@@ -1,4 +1,4 @@
-export  default class ClassSwitcher {
+export default class ClassSwitcher {
     /**
      * Корневой элемент
      * @type {Element}
@@ -23,7 +23,7 @@ export  default class ClassSwitcher {
         }
     }
 
-     moveClass(className, method, pred) {
+    moveClass(className, method, pred) {
         const
             active = this.root.querySelector('.' + className),
             next = active[method];
@@ -41,7 +41,7 @@ export  default class ClassSwitcher {
         return null;
     }
 
-     switchToPrevChunk() {
+    switchToPrevChunk() {
         this.moveClass('player-chunk-active', 'previousElementSibling');
         this.moveClass('timeline-chunk-active', 'previousElementSibling', (el) => {
             const
@@ -50,12 +50,12 @@ export  default class ClassSwitcher {
 
             el.querySelector('.timeline-chunk-inner').style.width = '';
 
-            return  w <= 20;
+            return w <= 20;
         });
 
     }
 
-     switchToNextChunk () {
+    switchToNextChunk() {
         this.moveClass('player-chunk-active', 'nextElementSibling');
         const
             el = this.moveClass('timeline-chunk-active', 'nextElementSibling');
@@ -64,7 +64,7 @@ export  default class ClassSwitcher {
         }
     }
 
-     runChunkSwitching(time, step) {
+    runChunkSwitching(time, step) {
         clearInterval(this.timelineTimer)
         this.timelineTimer = setInterval(() => {
             const
